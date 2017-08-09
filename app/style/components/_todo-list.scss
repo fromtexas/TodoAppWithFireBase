@@ -1,0 +1,28 @@
+.todo{
+  padding: 2rem 2rem 2rem 2rem;
+  border-top: 1px solid $darker-grey;
+  border-bottom: 1px solid $darker-grey;
+  transition: background 0.3s ease;
+  label{
+      font-size: 1rem;
+      cursor: pointer;
+  }
+  &:hover{
+    background-color: $darker-grey;
+  }
+}
+
+.todo-date, .message{
+  color: $light;
+  margin: 0;
+}
+.message{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.todo-completed{
+  p, label{
+    color: $light;
+    text-decoration: line-through;
+  }
+}

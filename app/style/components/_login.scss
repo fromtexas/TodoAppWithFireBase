@@ -1,0 +1,19 @@
+.in-center{
+  margin:0 auto !important;
+  display: block !important;
+}
+
+.login-wrapper{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.callout{
+  h5{
+    padding-bottom: 2rem;
+  }
+  background-color: $light-grey !important;
+  border-color: $darker-grey !important;
+  padding: 2rem !important;
+}
