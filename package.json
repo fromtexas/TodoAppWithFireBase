@@ -43,7 +43,7 @@
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.0.0",
     "url-loader": "^0.5.9",
-    "ionicons-npm"
+    "ionicons-npm": "2.0.1"
   },
   "devDependencies": {
     "karma": "^1.7.0",
