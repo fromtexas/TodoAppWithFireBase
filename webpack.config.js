@@ -15,8 +15,8 @@ try {
 module.exports = {
     entry: './app/app.jsx',
     output: {
-        path:__dirname,
-        filename: './public/bundle.js'
+        path:path.join(__dirname, 'public'),
+        filename: 'bundle.js'
 
     },
     resolve:{
@@ -41,23 +41,20 @@ module.exports = {
             },
             {
                 test:/\.scss$/,
-                use: [{
-                loader: "style-loader"
-            }, {
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader",
-
-            }]
+                use: [{loader: "style-loader"}, {loader: "css-loader"}, {loader: "sass-loader",}]
             },
             {
                 test:/\.css$/,
-                use: [{
-                loader: "style-loader"
-            }, {
-                loader: "css-loader"
-            }]
-            }
+                use: [{loader: "style-loader"}, {loader: "css-loader"}]
+          },
+          {
+              test: /\.(woff2?|svg)$/,
+              loader: 'url-loader?limit=10000&name=fonts/[name].[ext]'
+          },
+          {
+               test: /\.(ttf|eot)$/,
+               loader: 'file-loader?name=fonts/[name].[ext]'
+          }
                ]
     },
     plugins: [

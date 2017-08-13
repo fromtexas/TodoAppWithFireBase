@@ -2,11 +2,17 @@ import React from 'react'
 import * as Redux from 'react-redux'
 import * as actions from 'actions'
 
-export var  Login = (props) => {
-    var startLogin = () => {
-      var {dispatch} = props;
-      dispatch(actions.startLogin());
-    };
+
+
+export class Login extends React.Component {
+
+  startLogin () {
+    console.log('hey i am updated');
+    var {dispatch} = this.props;
+    dispatch(actions.startLogin());
+  };
+
+  render () {
     return(
         <div className='login-wrapper'>
               <div className='grid-x'>
@@ -15,7 +21,7 @@ export var  Login = (props) => {
                     <h3 className='text-center page-title'>Todo App Login</h3>
                     <h5 className='text-center'>Login with your Github account</h5>
 
-                    <button onClick={startLogin} className='button in-center expanded'>
+                    <button onClick={this.startLogin.bind(this)} className='button in-center expanded'>
                     Login with Github
                     </button>
                   </div>
@@ -23,6 +29,9 @@ export var  Login = (props) => {
               </div>
         </div>
       );
-};
+  }
+
+
+}
 
 export default Redux.connect()(Login);

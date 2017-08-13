@@ -45,6 +45,25 @@ export var todoReducer = (state=[], action) => {
         ];
         case 'LOGOUT':
         return [];
+        case 'REMOVE_TODO':
+        var newArrAfterRemovingItem = state.filter((item) =>{
+          if(item.id !== action.id){
+               return item;
+             }
+        });
+        return newArrAfterRemovingItem;
+        case 'EDIT_TODO':
+        var newArrAfterEditItem = state.map((item) => {
+          if(item.id !== action.id){
+            return item;
+          }else{
+            return {
+              ...item,
+              text: action.editValue
+            };
+          }
+        });
+        return newArrAfterEditItem;
     default:
       return  state;
   }

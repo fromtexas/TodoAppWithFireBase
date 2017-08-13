@@ -139,3 +139,43 @@ export var logout = () => {
     type: 'LOGOUT'
   }
 };
+
+export var removeTodo = (id) => {
+  return {
+    type: 'REMOVE_TODO',
+    id
+  }
+};
+
+export var startRemovingTodo = (id) => {
+  return (dispatch, getState) => {
+    var uid = getState().auth.uid;
+    var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+
+    return todoRef.remove().then(() => {
+      dispatch(removeTodo(id))
+    })
+  }
+};
+
+export var editTodo = (id, editValue) => {
+  return {
+    type: 'EDIT_TODO',
+    id,
+    editValue
+  }
+}
+
+export var startEditingTodo = (id, editValue) => {
+  return (dispatch, getState) => {
+    var uid = getState().auth.uid;
+    var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+    var updates = {
+      text: editValue
+    };
+    return todoRef.update(updates).then(() => {
+      dispatch(editTodo(id, editValue))
+    })
+  }
+
+}
