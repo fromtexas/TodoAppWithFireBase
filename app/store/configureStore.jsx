@@ -1,4 +1,3 @@
-// const redux = require('redux');
 import * as redux from 'redux'
 import thunk from 'redux-thunk'
 import {searchTextReducer, showCompletedReducer, todoReducer, authReducer} from 'reducers';

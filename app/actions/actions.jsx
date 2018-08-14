@@ -70,14 +70,6 @@ export var startGetTodos = () => {
         var todos = [];
         var todosKeys = Object.keys(todosVal);
 
-        // for(var i = 0; i < todosKeys.length; i++){
-        //   var item = todosVal[todosKeys[i]];
-        //   item.id = todosKeys[i];
-        //   todos.push(item);
-        // };
-
-        // better way
-
         todosKeys.forEach((id) => {
           todos.push({
             id,
