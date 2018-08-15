@@ -1,28 +1,28 @@
 import firebase, {firebaseRef, githubProvider} from 'firebaseConf'
 import moment from 'moment'
 
-export var setSearchText = (searchText) => {
+export const setSearchText = (searchText) => {
   return {
     type:'SET_SEARCH_TEXT',
     searchText
   };
 };
 
-export var addTodo = (todo) => {
+export const addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
     todo
   };
 };
 
-export var addTodos = (todos) => {
+export const addTodos = (todos) => {
   return {
     type: 'ADD_TODOS',
     todos
   };
 };
 
-export var startAddTodo = (text) => {
+export const startAddTodo = (text) => {
   return (dispatch, getState) => {
     var uid = getState().auth.uid;
     var todo =
@@ -43,13 +43,13 @@ export var startAddTodo = (text) => {
 };
 
 
-export var toggleShowCompleted = () => {
+export const toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
   };
 };
 
-export var toggleTodoUpdated = (id, updates) => {
+export const toggleTodoUpdated = (id, updates) => {
   return {
     type: 'TOGGLE_TODO_UPDATED',
     id,
@@ -59,16 +59,16 @@ export var toggleTodoUpdated = (id, updates) => {
 };
 
 
-export var startGetTodos = () => {
+export const startGetTodos = () => {
   return (dispatch, getState) => {
-      var uid = getState().auth.uid;
-      var todoRef = firebaseRef.child(`users/${uid}/todos`);
+      const uid = getState().auth.uid;
+      const todoRef = firebaseRef.child(`users/${uid}/todos`);
 
       return todoRef.once('value').then((snapshot) => {
 
-        var todosVal = snapshot.val() || {};
-        var todos = [];
-        var todosKeys = Object.keys(todosVal);
+        const todosVal = snapshot.val() || {};
+        const todos = [];
+        const todosKeys = Object.keys(todosVal);
 
         todosKeys.forEach((id) => {
           todos.push({
@@ -83,11 +83,11 @@ export var startGetTodos = () => {
   }
 };
 
-export var startToggleTodo = (id, status) => {
+export const startToggleTodo = (id, status) => {
   return (dispatch, getState) => {
-    var uid = getState().auth.uid;
-    var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
-    var updates = {
+    const uid = getState().auth.uid;
+    const todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+    const updates = {
       completed: status,
       completedAt: status? moment().unix() : null
     };
@@ -98,7 +98,7 @@ export var startToggleTodo = (id, status) => {
   }
 };
 
-export var startLogin = () => {
+export const startLogin = () => {
   return (dispatch, getState) => {
     return firebase.auth().signInWithPopup(githubProvider).then((res) => {
       console.log('Loged in!',res);
@@ -109,7 +109,7 @@ export var startLogin = () => {
 };
 
 
-export var startLogout = () => {
+export const startLogout = () => {
   return (dispatch, getState) => {
     return firebase.auth().signOut().then((res) => {
       console.log('logout');
@@ -119,30 +119,30 @@ export var startLogout = () => {
   }
 };
 
-export var login = (uid) => {
+export const login = (uid) => {
   return {
     type: 'LOGIN',
     uid
   }
 };
 
-export var logout = () => {
+export const logout = () => {
   return {
     type: 'LOGOUT'
   }
 };
 
-export var removeTodo = (id) => {
+export const removeTodo = (id) => {
   return {
     type: 'REMOVE_TODO',
     id
   }
 };
 
-export var startRemovingTodo = (id) => {
+export const startRemovingTodo = (id) => {
   return (dispatch, getState) => {
-    var uid = getState().auth.uid;
-    var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+    const uid = getState().auth.uid;
+    const todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
 
     return todoRef.remove().then(() => {
       dispatch(removeTodo(id))
@@ -150,7 +150,7 @@ export var startRemovingTodo = (id) => {
   }
 };
 
-export var editTodo = (id, editValue) => {
+export const editTodo = (id, editValue) => {
   return {
     type: 'EDIT_TODO',
     id,
@@ -158,11 +158,11 @@ export var editTodo = (id, editValue) => {
   }
 }
 
-export var startEditingTodo = (id, editValue) => {
+export const startEditingTodo = (id, editValue) => {
   return (dispatch, getState) => {
-    var uid = getState().auth.uid;
-    var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
-    var updates = {
+    const uid = getState().auth.uid;
+    const todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
+    const updates = {
       text: editValue
     };
     return todoRef.update(updates).then(() => {

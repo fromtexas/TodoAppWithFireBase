@@ -1,9 +1,9 @@
-var uuid = require('node-uuid');
-var moment = require('moment');
+const uuid = require('node-uuid');
+const moment = require('moment');
 
 
 
-export var searchTextReducer = (state='', action) => {
+export const searchTextReducer = (state='', action) => {
   switch (action.type) {
     case 'SET_SEARCH_TEXT':
       return action.searchText;
@@ -12,7 +12,7 @@ export var searchTextReducer = (state='', action) => {
   }
 };
 
-export var showCompletedReducer = (state=false, action) => {
+export const showCompletedReducer = (state=false, action) => {
   switch (action.type) {
     case 'TOGGLE_SHOW_COMPLETED':
       return state? false : true;
@@ -21,12 +21,12 @@ export var showCompletedReducer = (state=false, action) => {
   }
 };
 
-export var todoReducer = (state=[], action) => {
+export const todoReducer = (state=[], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return [...state, action.todo];
        case 'TOGGLE_TODO_UPDATED':
-        var newArr = state.map((item) => {
+        const newArr = state.map((item) => {
           if(item.id !== action.id){
             return item;
           }else{
@@ -46,14 +46,14 @@ export var todoReducer = (state=[], action) => {
         case 'LOGOUT':
         return [];
         case 'REMOVE_TODO':
-        var newArrAfterRemovingItem = state.filter((item) =>{
+        const newArrAfterRemovingItem = state.filter((item) =>{
           if(item.id !== action.id){
                return item;
              }
         });
         return newArrAfterRemovingItem;
         case 'EDIT_TODO':
-        var newArrAfterEditItem = state.map((item) => {
+        const newArrAfterEditItem = state.map((item) => {
           if(item.id !== action.id){
             return item;
           }else{
@@ -69,7 +69,7 @@ export var todoReducer = (state=[], action) => {
   }
 };
 
-export var authReducer = (state={}, action) => {
+export const authReducer = (state={}, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
