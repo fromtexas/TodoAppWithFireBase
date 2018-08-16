@@ -1,14 +1,14 @@
-import React from 'react'
-import {Route, Router, IndexRoute, hashHistory} from 'react-router'
+import React from 'react';
+import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
 
-import Login from 'Login'
-import TodoApp from 'TodoApp'
-import firebase from 'firebaseConf'
+import Login from 'Login';
+import TodoApp from 'TodoApp';
+import firebase from 'firebaseConf';
 
 
 
-var requireLogin = (nextState, replace, next) => {
+const requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
     replace('/');
   }
@@ -16,7 +16,7 @@ var requireLogin = (nextState, replace, next) => {
 };
 
 
-var requireLogout = (nextState, replace, next) => {
+const requireLogout = (nextState, replace, next) => {
   if (firebase.auth().currentUser) {
     replace('/todos');
   }

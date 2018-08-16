@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {Route, Router, IndexRoute, hashHistory} from 'react-router'
-import {Provider} from 'react-redux'
-import * as actions from 'actions'
-import {configure} from 'configureStore'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {hashHistory} from 'react-router';
+import {Provider} from 'react-redux';
+import * as actions from 'actions';
+import {configure} from 'configureStore';
 
-import router from 'app/router/'
-import firebase from 'firebaseConf'
+import router from 'app/router/';
+import firebase from 'firebaseConf';
 
-import css from './style.scss'
-import foundation from '../node_modules/foundation-sites/dist/css/foundation.min.css'
-import ionicons from '../node_modules/ionicons-npm/css/ionicons.min.css'
+import css from './style.scss';
+import foundation from '../node_modules/foundation-sites/dist/css/foundation.min.css';
+import ionicons from '../node_modules/ionicons-npm/css/ionicons.min.css';
 
 
 var store = configure();
