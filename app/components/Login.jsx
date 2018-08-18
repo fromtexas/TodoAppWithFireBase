@@ -7,8 +7,7 @@ import * as actions from 'actions'
 export class Login extends React.Component {
 
   startLogin () {
-    console.log('hey i am updated');
-    var {dispatch} = this.props;
+    const {dispatch} = this.props;
     dispatch(actions.startLogin());
   };
 

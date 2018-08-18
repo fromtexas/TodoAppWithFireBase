@@ -4,7 +4,7 @@ import * as actions from 'actions'
 
 export class EditRemoveTodo extends React.Component {
   removeTodo () {
-    var id = this.props.id;
+    const id = this.props.id;
     this.props.dispatch(actions.startRemovingTodo(id))
   }
 

@@ -9,7 +9,7 @@ import * as actions from 'actions'
 export class AddTodo extends React.Component {
 
   onFormSubmit (e) {
-    var todo = this.refs.todo.value;
+    const todo = this.refs.todo.value;
     if(todo){
       this.props.dispatch(actions.startAddTodo(todo));
       this.refs.todo.value = '';

@@ -6,8 +6,8 @@ module.exports = {
     }
   },
   getTodos: function () {
-    var stringTodos = localStorage.getItem('todos');
-    var todos = [];
+    const stringTodos = localStorage.getItem('todos');
+    let todos = [];
     try {
       todos = JSON.parse(stringTodos);
     } catch (e) {
@@ -17,7 +17,7 @@ module.exports = {
 
   },
   filterTodos: function(todos, showCompleted, searchText){
-    var filteredTodos = todos;
+    let filteredTodos = todos;
 
     filteredTodos =  filteredTodos.filter((todo) => {
       return !todo.completed || showCompleted

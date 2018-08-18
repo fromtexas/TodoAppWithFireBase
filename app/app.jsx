@@ -13,7 +13,7 @@ import foundation from '../node_modules/foundation-sites/dist/css/foundation.min
 import ionicons from '../node_modules/ionicons-npm/css/ionicons.min.css';
 
 
-var store = configure();
+const store = configure();
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
