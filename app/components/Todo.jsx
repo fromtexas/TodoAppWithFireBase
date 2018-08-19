@@ -17,12 +17,12 @@ export class Todo extends React.Component {
   }
 
   toggleTodo () {
-    var status = !this.props.completed;
+    const status = !this.props.completed;
     this.props.dispatch(actions.startToggleTodo(this.props.id, status))
   }
 
   changeEditStatus() {
-    var currentStatus = this.state.edit;
+    const currentStatus = this.state.edit;
     this.setState({
       edit: !currentStatus
     })
@@ -30,19 +30,19 @@ export class Todo extends React.Component {
 
 
   render () {
-    var editStatus = this.state.edit;
-    var {text, id, completed, createdAt, completedAt} = this.props;
-    var todoClassName = completed ? 'todo todo-completed' : 'todo';
-    var renderDate = () => {
-      var message = 'Created at: ';
-      var someDate = createdAt;
+    const editStatus = this.state.edit;
+    const {text, completed, createdAt, completedAt} = this.props;
+    const todoClassName = completed ? 'todo todo-completed' : 'todo';
+    const renderDate = () => {
+      let message = 'Created at: ';
+      let someDate = createdAt;
       if(completed){
         message = 'Completed at: ';
         someDate = completedAt;
       }
       return message + moment.unix(someDate).format('MMMM Do, YYYY @ k:mm ');;
     };
-    var renderEditComp = () => {
+    const renderEditComp = () => {
       if(editStatus){
       return  <EditTodo changeEditStatus={this.changeEditStatus.bind(this)} {...this.props} />
       }else{
