@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 try {
   const config = {
@@ -10,10 +10,7 @@ try {
     messagingSenderId: process.env.MESSAGING_SENDER_ID
   };
   firebase.initializeApp(config);
-
-} catch (e) {
-
-}
+} catch (e) {}
 
 export const githubProvider = new firebase.auth.GithubAuthProvider();
 export const firebaseRef = firebase.database().ref();

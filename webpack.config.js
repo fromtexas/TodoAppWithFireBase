@@ -1,66 +1,66 @@
-var webpack = require('webpack');
-var path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const envFile = require('node-env-file');
+var webpack = require("webpack");
+var path = require("path");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const envFile = require("node-env-file");
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 try {
-  envFile(path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'))
-} catch (e) {
-
-}
-
+  envFile(path.join(__dirname, "config/" + process.env.NODE_ENV + ".env"));
+} catch (e) {}
 
 module.exports = {
-    entry: './app/app.jsx',
-    output: {
-        path:path.join(__dirname, 'public'),
-        filename: 'bundle.js'
-
+  entry: "./app/app.jsx",
+  output: {
+    path: path.join(__dirname, "public"),
+    filename: "bundle.js"
+  },
+  resolve: {
+    modules: [__dirname, "node_modules", "./app/components", "./app/api"],
+    alias: {
+      firebaseConf: "app/firebase/index.js",
+      actions: "app/actions/actions.jsx",
+      reducers: "app/reducers/reducers.jsx",
+      configureStore: "app/store/configureStore.jsx"
     },
-    resolve:{
-        modules: [__dirname, 'node_modules', './app/components', './app/api' ],
-        alias: {
-          firebaseConf: 'app/firebase/index.js',
-          actions: 'app/actions/actions.jsx',
-          reducers: 'app/reducers/reducers.jsx',
-          configureStore: 'app/store/configureStore.jsx'
+    extensions: [".js", ".jsx"]
+  },
+  module: {
+    loaders: [
+      {
+        loader: "babel-loader",
+        query: {
+          presets: ["react", "es2015", "stage-0"]
         },
-        extensions: ['.js', '.jsx']
-    },
-    module:{
-        loaders:[
-            {
-                loader: 'babel-loader',
-                query: {
-                    presets:['react', 'es2015', 'stage-0']
-                },
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/
-            },
-            {
-                test:/\.scss$/,
-                use: [{loader: "style-loader"}, {loader: "css-loader"}, {loader: "sass-loader",}]
-            },
-            {
-                test:/\.css$/,
-                use: [{loader: "style-loader"}, {loader: "css-loader"}]
-          },
-          {
-              test: /\.(woff2?|svg)$/,
-              loader: 'url-loader?limit=10000&name=fonts/[name].[ext]'
-          },
-          {
-               test: /\.(ttf|eot)$/,
-               loader: 'file-loader?name=fonts/[name].[ext]'
-          }
-               ]
-    },
-    plugins: [
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "sass-loader" }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+      },
+      {
+        test: /\.(woff2?|svg)$/,
+        loader: "url-loader?limit=10000&name=fonts/[name].[ext]"
+      },
+      {
+        test: /\.(ttf|eot)$/,
+        loader: "file-loader?name=fonts/[name].[ext]"
+      }
+    ]
+  },
+  plugins: [
     new UglifyJSPlugin(),
     new webpack.DefinePlugin({
-      'process.env': {
+      "process.env": {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         API_KEY: JSON.stringify(process.env.API_KEY),
         AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
@@ -69,10 +69,11 @@ module.exports = {
         PROJECT_ID: JSON.stringify(process.env.PROJECT_ID),
         MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID),
         GITGUN_ACCESS_TOKEN: JSON.stringify(process.env.GITGUN_ACCESS_TOKEN)
-
       }
     })
-    ],
-    devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
-
-}
+  ],
+  devtool:
+    process.env.NODE_ENV === "production"
+      ? undefined
+      : "cheap-module-eval-source-map"
+};
